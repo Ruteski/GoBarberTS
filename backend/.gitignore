@@ -1,5 +1,10 @@
 .vscode/
 yarn.lock
+build/
+tmp/*
+temp/
+
+!tmp/.gitkeep
 
 # Logs
 logs
