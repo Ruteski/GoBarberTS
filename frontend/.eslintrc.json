@@ -35,6 +35,8 @@
     "no-use-before-define": "off",
     "@typescript-eslint/camelcase": "off",
     "react/jsx-one-expression-per-line": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
     "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
       "error",
