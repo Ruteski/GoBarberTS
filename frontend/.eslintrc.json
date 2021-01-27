@@ -36,6 +36,7 @@
     "@typescript-eslint/camelcase": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
+    "no-unused-expressions": "off",
     "react/prop-types": "off",
     "camelcase": "off",
     "@typescript-eslint/explicit-function-return-type": [
