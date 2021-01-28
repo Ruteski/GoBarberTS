@@ -6,7 +6,8 @@ import * as Yup from 'yup';
 import { FormHandles } from '@unform/core';
 
 import getValidationErrors from '../../utils/getValidationErrors';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../hooks/Auth';
+import { useToast } from '../../hooks/Toast';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -24,6 +25,7 @@ const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
   const { signIn } = useAuth();
+  const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: ISignInFormData) => {
@@ -34,14 +36,14 @@ const SignIn: React.FC = () => {
           email: Yup.string()
             .required('O e-mail é obrigatório')
             .email('Digite um e-mail válido'),
-          password: Yup.string().min(6, 'A senha deve ter no mínimo 6 dígitos'),
+          password: Yup.string().required('A senha é obrigatória'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
 
-        signIn({
+        await signIn({
           email: data.email,
           password: data.password,
         });
@@ -52,10 +54,10 @@ const SignIn: React.FC = () => {
           formRef.current?.setErrors(errors);
         }
 
-        // disparar um toast
+        addToast();
       }
     },
-    [signIn],
+    [signIn, addToast],
   );
 
   return (
